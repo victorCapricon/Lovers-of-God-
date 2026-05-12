@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="bi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovers of God Team | Tatiana Ndayizeye - Burundi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a1a2e 100%);
+            color: #f0e6d0;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #ffd966;
+            color: #ffd966;
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .lang-btn.active {
+            background: #ffd966;
+            color: #1a0f2e;
+        }
+        .lang-btn:hover {
+            background: #ffd966;
+            color: #1a0f2e;
+        }
+
+        /* Intro Section */
+        .intro {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a0f2e, #0d0819);
+            position: relative;
+        }
+
+        .logo-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffd966;
+            box-shadow: 0 0 20px rgba(255,217,102,0.5);
+            margin-bottom: 1.5rem;
+            background: #2c1a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4a2c6d, #2c1a4a);
+            color: #ffd966;
+            font-size: 3rem;
+        }
+
+        .team-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd966, #e6b800);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader {
+            font-size: 1.5rem;
+            color: #ffd966;
+            margin-bottom: 1rem;
+        }
+
+        .country {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .verse {
+            font-style: italic;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            padding: 1rem;
+            border-left: 3px solid #e6b800;
+            border-right: 3px solid #e6b800;
+        }
+
+        .description {
+            max-width: 600px;
+            margin: 1rem auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .launch-btn {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, #e6b800, #ffd966);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            color: #1a0f2e;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(230,184,0,0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .launch-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(230,184,0,0.6);
+        }
+
+        /* Media Player Section */
+        .media-player {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a1a2e 100%);
+        }
+
+        .media-player.active {
+            display: block;
+        }
+
+        .intro.hide {
+            display: none;
+        }
+
+        .player-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 20, 45, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 2rem;
+            border: 1px solid #e6b80055;
+        }
+
+        .player-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .player-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd966;
+            margin-bottom: 1rem;
+        }
+
+        .player-header h2 {
+            color: #ffd966;
+            font-size: 1.8rem;
+        }
+
+        .current-song {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .current-song h3 {
+            font-size: 1.4rem;
+            color: #ffd966;
+        }
+
+        audio {
+            width: 100%;
+            margin: 1rem 0;
+            border-radius: 40px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .controls button {
+            background: #e6b800;
+            border: none;
+            font-size: 1.2rem;
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .controls button:hover {
+            background: #ffd966;
+            transform: scale(1.03);
+        }
+
+        .song-list {
+            margin-top: 2rem;
+            background: rgba(20, 15, 35, 0.6);
+            border-radius: 24px;
+            padding: 1rem;
+        }
+
+        .song-list h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .song-list button {
+            background: #4a2c6d;
+            color: white;
+            border: none;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        .song-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem;
+            margin: 0.5rem 0;
+            background: rgba(255,255,240,0.05);
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .song-item:hover {
+            background: rgba(230,184,0,0.2);
+        }
+
+        .play-btn {
+            background: #e6b800;
+            border: none;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .no-songs {
+            text-align: center;
+            padding: 2rem;
+            color: #bbaa88;
+        }
+
+        .kirundi-note {
+            background: #2c2440;
+            padding: 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #887;
+        }
+
+        @media (max-width: 600px) {
+            .team-name { font-size: 1.6rem; }
+            .leader { font-size: 1.2rem; }
+            .logo-circle { width: 120px; height: 120px; }
+            .player-logo { width: 80px; height: 80px; }
+            .launch-btn { font-size: 1rem; padding: 0.8rem 1.5rem; }
+            .lang-switcher { top: 10px; right: 10px; padding: 5px 10px; }
+            .lang-btn { padding: 3px 8px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="bi">🇧🇮 Kirundi</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+    </div>
+
+    <!-- INTRO SECTION -->
+    <div class="intro" id="introSection">
+        <div class="logo-circle">
+            <img src="logo.jpg" alt="Lovers of God Logo" id="introLogo" class="logo-circle" style="display: none;">
+            <div id="introPlaceholder" class="logo-placeholder">🎵🙏</div>
+        </div>
+        
+        <div class="team-name">Lovers of God Team</div>
+        <div class="leader">Tatiana Ndayizeye</div>
+        <div class="country">🇧🇮 Uburundi - Burundi 🇧🇮</div>
+        
+        <div class="verse" id="verseText">
+            "Mukorane Imana indirimbo nziza<br>
+            Muyimbire Izina rye ryera"<br>
+            <small>- Zaburi 96:1-2</small>
+        </div>
+        
+        <div class="description" id="descriptionText">
+            Turi itsinda ry’abakunzi b’Imana duhereye mu Burundi. <br>
+            Twimbira Imana mu ndirimbo z’urukundo, ikuzo n’ishimwe. <br>
+            <strong>Twakira neza mu ndirimbo zacu!</strong>
+        </div>
+        
+        <button class="launch-btn" id="launchPlayerBtn">
+            <span id="launchBtnText">🎵 Kanda ugatangire gucuranga 🎵</span>
+        </button>
+    </div>
+
+    <!-- MEDIA PLAYER SECTION -->
+    <div class="media-player" id="playerSection">
+        <div class="player-card">
+            <div class="player-header">
+                <img src="logo.jpg" alt="Lovers of God Logo" id="playerLogo" class="player-logo" style="display: none;">
+                <div id="playerPlaceholder" class="player-logo" style="background: linear-gradient(135deg, #4a2c6d, #2c1a4a); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 2.5rem;">🎵🙏</div>
+                <h2>🎵 Lovers of God Team 🎵</h2>
+                <p>Tatiana Ndayizeye | Uburundi</p>
+            </div>
+
+            <div class="current-song">
+                <h3 id="currentSongTitle">Nta ndirimbo yatoranijwe</h3>
+                <p id="currentSongArtist">Kanda Kina uririmbe</p>
+            </div>
+            
+            <audio id="audioPlayer" controls></audio>
+            
+            <div class="controls">
+                <button id="prevBtn"><span id="prevText">⏮ Ibanza</span></button>
+                <button id="playPauseBtn"><span id="playPauseText">▶ Kina</span></button>
+                <button id="nextBtn"><span id="nextText">Gukurikira ⏭</span></button>
+            </div>
+
+            <div class="song-list">
+                <h3>
+                    <span id="songsListTitle">📀 Indirimbo zacu</span>
+                    <button id="refreshBtn"><span id="refreshText">🔄 Vugurura</span></button>
+                </h3>
+                <div id="songsContainer">
+                    <div class="no-songs" id="loadingText">Irarakira indirimbo...</div>
+                </div>
+                <div class="kirundi-note" id="instructionNote">
+                    📂 <strong>Uko wongeraho indirimbo:</strong><br>
+                    Kora folder "music" → Shira .mp3 zawe → Kora songs.json → Kanda Vugurura
+                </div>
+            </div>
+            <footer><span id="footerText">🎵 "Mukorane Imana indirimbo nziza" - Zaburi 96:1 🎵</span></footer>
+        </div>
+    </div>
+
+    <script>
+        // --- MULTI-LANGUAGE TRANSLATIONS ---
+        const translations = {
+            bi: {
+                verse: '"Mukorane Imana indirimbo nziza<br>Muyimbire Izina rye ryera"<br><small>- Zaburi 96:1-2</small>',
+                description: 'Turi itsinda ry\'abakunzi b\'Imana duhereye mu Burundi. <br>Twimbira Imana mu ndirimbo z\'urukundo, ikuzo n\'ishimwe. <br><strong>Twakira neza mu ndirimbo zacu!</strong>',
+                launchBtn: '🎵 Kanda ugatangire gucuranga 🎵',
+                currentSongDefault: 'Nta ndirimbo yatoranijwe',
+                currentArtistDefault: 'Kanda Kina uririmbe',
+                prev: '⏮ Ibanza',
+                play: '▶ Kina',
+                pause: '⏸ Hagarika',
+                next: 'Gukurikira ⏭',
+                songsTitle: '📀 Indirimbo zacu',
+                refresh: '🔄 Vugurura',
+                loading: 'Irarakira indirimbo...',
+                instruction: '📂 <strong>Uko wongeraho indirimbo:</strong><br>Kora folder "music" → Shira .mp3 zawe → Kora songs.json → Kanda Vugurura',
+                footer: '🎵 "Mukorane Imana indirimbo nziza" - Zaburi 96:1 🎵',
+                noSongs: '📭 Nta ndirimbo. Kanda Vugurura nyuma yo gushira .mp3.'
+            },
+            en: {
+                verse: '"Sing to God a new song<br>Sing to His holy name"<br><small>- Psalm 96:1-2</small>',
+                description: 'We are a group of God\'s lovers from Burundi. <br>We sing to God with songs of love, glory, and praise. <br><strong>Welcome to our songs!</strong>',
+                launchBtn: '🎵 Click to start the player 🎵',
+                currentSongDefault: 'No song selected',
+                currentArtistDefault: 'Click Play to sing',
+                prev: '⏮ Previous',
+                play: '▶ Play',
+                pause: '⏸ Pause',
+                next: 'Next ⏭',
+                songsTitle: '📀 Our Songs',
+                refresh: '🔄 Refresh',
+                loading: 'Loading songs...',
+                instruction: '📂 <strong>How to add songs:</strong><br>Create "music" folder → Add your .mp3 files → Create songs.json → Click Refresh',
+                footer: '🎵 "Sing to God a new song" - Psalm 96:1 🎵',
+                noSongs: '📭 No songs found. Click Refresh after adding .mp3 files.'
+            },
+            fr: {
+                verse: '"Chantez à Dieu un cantique nouveau<br>Chantez à son saint nom"<br><small>- Psaume 96:1-2</small>',
+                description: 'Nous sommes un groupe d\'amis de Dieu du Burundi. <br>Nous chantons à Dieu avec des chants d\'amour, de gloire et de louange. <br><strong>Bienvenue dans nos chants !</strong>',
+                launchBtn: '🎵 Cliquez pour lancer le lecteur 🎵',
+                currentSongDefault: 'Aucun chant sélectionné',
+                currentArtistDefault: 'Cliquez sur Play pour chanter',
+                prev: '⏮ Précédent',
+                play: '▶ Lecture',
+                pause: '⏸ Pause',
+                next: 'Suivant ⏭',
+                songsTitle: '📀 Nos Chants',
+                refresh: '🔄 Actualiser',
+                loading: 'Chargement des chants...',
+                instruction: '📂 <strong>Comment ajouter des chants :</strong><br>Créez un dossier "music" → Ajoutez vos .mp3 → Créez songs.json → Cliquez Actualiser',
+                footer: '🎵 "Chantez à Dieu un cantique nouveau" - Psaume 96:1 🎵',
+                noSongs: '📭 Aucun chant trouvé. Cliquez Actualiser après avoir ajouté des .mp3.'
+            }
+        };
+
+        let currentLang = 'bi';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            // Update intro section
+            document.getElementById('verseText').innerHTML = t.verse;
+            document.getElementById('descriptionText').innerHTML = t.description;
+            document.getElementById('launchBtnText').innerHTML = t.launchBtn;
+            
+            // Update player texts (if visible)
+            const currentTitleEl = document.getElementById('currentSongTitle');
+            if (currentTitleEl.innerText === translations.bi.currentSongDefault || 
+                currentTitleEl.innerText === translations.en.currentSongDefault ||
+                currentTitleEl.innerText === translations.fr.currentSongDefault) {
+                currentTitleEl.innerText = t.currentSongDefault;
+            }
+            document.getElementById('currentSongArtist').innerHTML = t.currentArtistDefault;
+            
+            document.getElementById('prevText').innerHTML = t.prev;
+            document.getElementById('nextText').innerHTML = t.next;
+            document.getElementById('songsListTitle').innerHTML = t.songsTitle;
+            document.getElementById('refreshText').innerHTML = t.refresh;
+            document.getElementById('instructionNote').innerHTML = t.instruction;
+            document.getElementById('footerText').innerHTML = t.footer;
+            
+            // Update play/pause button based on current audio state
+            const audio = document.getElementById('audioPlayer');
+            if (audio.paused) {
+                document.getElementById('playPauseText').innerHTML = t.play;
+            } else {
+                document.getElementById('playPauseText').innerHTML = t.pause;
+            }
+            
+            // Update active button style
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Language switcher event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateLanguage(lang);
+            });
+        });
+
+        // --- LOGO LOADING ---
+        const introLogoImg = document.getElementById('introLogo');
+        const introPlaceholder = document.getElementById('introPlaceholder');
+        const playerLogoImg = document.getElementById('playerLogo');
+        const playerPlaceholder = document.getElementById('playerPlaceholder');
+
+        function tryLoadLogo() {
+            const img = new Image();
+            img.onload = function() {
+                introLogoImg.style.display = 'block';
+                introPlaceholder.style.display = 'none';
+                playerLogoImg.style.display = 'block';
+                playerPlaceholder.style.display = 'none';
+                introLogoImg.src = 'logo.jpg';
+                playerLogoImg.src = 'logo.jpg';
+            };
+            img.onerror = function() {
+                introLogoImg.style.display = 'none';
+                introPlaceholder.style.display = 'flex';
+                playerLogoImg.style.display = 'none';
+                playerPlaceholder.style.display = 'flex';
+            };
+            img.src = 'logo.jpg';
+        }
+        tryLoadLogo();
+
+        // --- TRANSITION ---
+        const intro = document.getElementById('introSection');
+        const player = document.getElementById('playerSection');
+        const launchBtn = document.getElementById('launchPlayerBtn');
+
+        launchBtn.addEventListener('click', () => {
+            intro.classList.add('hide');
+            player.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- MUSIC PLAYER LOGIC ---
+        let songs = [];
+        let currentIndex = 0;
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentTitle = document.getElementById('currentSongTitle');
+        const songsContainer = document.getElementById('songsContainer');
+
+        async function loadSongsFromFolder() {
+            const t = translations[currentLang];
+            songsContainer.innerHTML = `<div class="no-songs">${t.loading}</div>`;
+            
+            try {
+                const response = await fetch('songs.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    songs = data.songs.map(song => ({
+                        name: song.replace('.mp3', '').replace(/_/g, ' '),
+                        file: `music/${song}`
+                    }));
+                    displaySongsList();
+                    return;
+                }
+            } catch(e) {}
+
+            songsContainer.innerHTML = `
+                <div class="no-songs">
+                    🎶 <strong>${currentLang === 'bi' ? 'Iteguriro ry’indirimbo' : currentLang === 'en' ? 'Music Setup' : 'Configuration des chants'}</strong><br><br>
+                    1️⃣ ${currentLang === 'bi' ? 'Kora folder "music"' : currentLang === 'en' ? 'Create "music" folder' : 'Créez le dossier "music"'}<br>
+                    2️⃣ ${currentLang === 'bi' ? 'Shira .mp3 muri music/' : currentLang === 'en' ? 'Add .mp3 files to music/' : 'Ajoutez vos .mp3 dans music/'}<br>
+                    3️⃣ ${currentLang === 'bi' ? 'Kora songs.json' : currentLang === 'en' ? 'Create songs.json' : 'Créez songs.json'}<br>
+                    4️⃣ ${currentLang === 'bi' ? 'Kanda Vugurura' : currentLang === 'en' ? 'Click Refresh' : 'Cliquez Actualiser'}<br><br>
+                    ⭐ ${currentLang === 'bi' ? 'Indirimbo z\'urugero:' : currentLang === 'en' ? 'Demo songs:' : 'Chants démo:'}
+                </div>
+            `;
+            const demoList = ["Uvuze ati unkunda", "Yesu ni Mwiza", "Urukundo rw’Imana"];
+            demoList.forEach(name => {
+                const div = document.createElement('div');
+                div.className = 'song-item';
+                div.innerHTML = `
+                    <div><span>🎵</span> ${name} (${currentLang === 'bi' ? 'demo' : currentLang === 'en' ? 'demo' : 'démo'})</div>
+                    <button class="play-btn demo-btn">${currentLang === 'bi' ? 'Kina demo' : currentLang === 'en' ? 'Play demo' : 'Lire démo'}</button>
+                `;
+                songsContainer.appendChild(div);
+            });
+            document.querySelectorAll('.demo-btn').forEach(btn => {
+                btn.addEventListener('click', () => alert(currentLang === 'bi' ? "📀 Ongerako indirimbo nyawe muri music/ na songs.json, hanyuma kanda Vugurura." : currentLang === 'en' ? "📀 Add your real songs to music/ and songs.json, then click Refresh." : "📀 Ajoutez vos vrais chants dans music/ et songs.json, puis cliquez Actualiser."));
+            });
+        }
+
+        function displaySongsList() {
+            const t = translations[currentLang];
+            if (!songs.length) {
+                songsContainer.innerHTML = `<div class="no-songs">${t.noSongs}</div>`;
+                return;
+            }
+            songsContainer.innerHTML = '';
+            songs.forEach((song, idx) => {
+                const li = document.createElement('div');
+                li.className = 'song-item';
+                li.innerHTML = `
+                    <div>🎵 ${song.name}</div>
+                    <button class="play-btn" data-index="${idx}">${currentLang === 'bi' ? 'Kina' : currentLang === 'en' ? 'Play' : 'Lire'}</button>
+                `;
+                songsContainer.appendChild(li);
+            });
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = btn.getAttribute('data-index');
+                    if (idx !== null) playSong(parseInt(idx));
+                });
+            });
+        }
+
+        function playSong(index) {
+            if (!songs.length) return;
+            if (index < 0) index = 0;
+            if (index >= songs.length) index = songs.length - 1;
+            currentIndex = index;
+            const song = songs[currentIndex];
+            currentTitle.innerText = song.name;
+            audio.src = song.file;
+            audio.play();
+            const t = translations[currentLang];
+            document.getElementById('playPauseText').innerHTML = t.pause;
+        }
+
+        function updatePlayPause() {
+            const t = translations[currentLang];
+            if (audio.paused) {
+                document.getElementById('playPauseText').innerHTML = t.play;
+            } else {
+                document.getElementById('playPauseText').innerHTML = t.pause;
+            }
+        }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) audio.play();
+            else audio.pause();
+            updatePlayPause();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (songs.length) playSong((currentIndex + 1) % songs.length);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (songs.length) playSong((currentIndex - 1 + songs.length) % songs.length);
+        });
+
+        audio.addEventListener('ended', () => {
+            if (songs.length) playSong((currentIndex + 1) % songs.length);
+            updatePlayPause();
+        });
+        audio.addEventListener('play', updatePlayPause);
+        audio.addEventListener('pause', updatePlayPause);
+
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadSongsFromFolder();
+        });
+
+        loadSongsFromFolder();
+    </script>
+</body>
+</html>
